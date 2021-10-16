@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario');
+const bcryptjs = require('bcryptjs');
 
 // Resolvers
 const resolvers = {
@@ -14,6 +15,10 @@ const resolvers = {
       if (existeUsuario) {
         throw new Error("El usuario ya esta registrado");
       }
+
+      // Hashear el password
+      const salt = await bcryptjs.genSalt(10);
+      input.password = await bcryptjs.hash(password, salt);
 
       try {
         // Guardarlo en la base de datos

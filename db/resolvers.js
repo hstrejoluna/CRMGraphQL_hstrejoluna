@@ -13,10 +13,10 @@ const crearToken = (usuario, secreta, expiresIn) => {
 // Resolvers
 const resolvers = {
   Query: {
-    obtenerUsuario: async (_, {token}) => {
-      const usuarioId = await jwt.verify(token, process.env.SECRETA); 
+    obtenerUsuario: async (_, { token }) => {
+      const usuarioId = await jwt.verify(token, process.env.SECRETA);
       return usuarioId;
-    }
+    },
   },
   Mutation: {
     nuevoUsuario: async (_, { input }) => {
@@ -60,6 +60,18 @@ const resolvers = {
       return {
         token: crearToken(existeUsuario, process.env.SECRETA, "24h"),
       };
+    },
+
+    nuevoProducto: async (_, { input }) => {
+      try {
+        const producto = new Producto(input);
+
+        // almacenar en la bd
+        const resultado = await producto.save();
+        return resultado;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

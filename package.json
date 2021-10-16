@@ -1,0 +1,31 @@
+{
+  "name": "crmgraphql_hstrejoluna",
+  "version": "1.0.0",
+  "description": "CRM Backend Node GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev" : "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstrejoluna/CRMGraphQL_hstrejoluna.git"
+  },
+  "keywords": [
+    "Node",
+    "GraphQL",
+    "Apollo"
+  ],
+  "author": "Hector Sebastian Trejo Luna",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/hstrejoluna/CRMGraphQL_hstrejoluna/issues"
+  },
+  "homepage": "https://github.com/hstrejoluna/CRMGraphQL_hstrejoluna#readme",
+  "dependencies": {
+    "apollo-server": "^3.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

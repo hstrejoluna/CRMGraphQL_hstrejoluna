@@ -127,15 +127,16 @@ const resolvers = {
     /////////////////(CLIENTES)/////////////////////////////
     /////////////////(CLIENTES)/////////////////////////////
 
-    nuevoCliente: async (_, { input }) => {
+    nuevoCliente: async (_, { input }, ctx) => {
       const { email } = input;
       // Verificar si existe el cliente
       const cliente = await Cliente.findOne({ email });
       if (cliente) {
         throw new Error("El cliente ya esta registrado");
       }
+      const nuevoCliente = new Cliente(input);
       // Asignar el vendedor
-      nuevoCliente.vendedor = "616b1be5d08d336ff839ff37";
+      nuevoCliente.vendedor = ctx.usuario.id;
 
       try {
         const resultado = await nuevoCliente.save();

@@ -82,6 +82,10 @@ const resolvers = {
       };
     },
 
+    /////////////////(PRODUCTOS)/////////////////////////////
+    /////////////////(PRODUCTOS)/////////////////////////////
+    /////////////////(PRODUCTOS)/////////////////////////////
+
     nuevoProducto: async (_, { input }) => {
       try {
         const producto = new Producto(input);
@@ -118,6 +122,29 @@ const resolvers = {
       await Producto.findOneAndDelete({ _id: id });
       return "Producto eliminado";
     },
+
+    /////////////////(CLIENTES)/////////////////////////////
+    /////////////////(CLIENTES)/////////////////////////////
+    /////////////////(CLIENTES)/////////////////////////////
+
+    nuevoCliente: async (_, { input }) => {
+      const { email } = input;
+      // Verificar si existe el cliente
+      const cliente = await Cliente.findOne({ email });
+      if (cliente) {
+        throw new Error("El cliente ya esta registrado");
+      }
+      // Asignar el vendedor
+      nuevoCliente.vendedor = "616b1be5d08d336ff839ff37";
+
+      try {
+        const resultado = await nuevoCliente.save();
+        return resultado;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
+
 module.exports = resolvers;

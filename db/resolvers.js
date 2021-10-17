@@ -1,5 +1,6 @@
 const Usuario = require("../models/Usuario");
 const Producto = require("../models/Producto");
+const Cliente = require("../models/Cliente");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "variables.env" });
@@ -105,18 +106,18 @@ const resolvers = {
       return producto;
     },
 
-    eliminarProducto: async(_, { id}) => {
+    eliminarProducto: async (_, { id }) => {
       // Revisar si el producto existe
       let producto = await Producto.findById(id);
 
-      if(!producto){
+      if (!producto) {
         throw new Error("Producto no encontrado");
       }
 
       //Eliminar
-      await Producto.findOneAndDelete({_id : id});
+      await Producto.findOneAndDelete({ _id: id });
       return "Producto eliminado";
-    }
+    },
   },
 };
 module.exports = resolvers;

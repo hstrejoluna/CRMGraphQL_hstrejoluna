@@ -69,7 +69,20 @@ const resolvers = {
         throw new Error("No tienes las credenciales");
       }
     },
+
+    obtenerPedidos: async () => {
+      try {
+        const pedidos = await Pedido.find({});
+        return pedidos;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
+
+  //
+  // Mutations
+  //
 
   Mutation: {
     nuevoUsuario: async (_, { input }) => {

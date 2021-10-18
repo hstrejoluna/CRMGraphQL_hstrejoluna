@@ -224,11 +224,11 @@ const resolvers = {
     nuevoPedido: async (_, { input }, ctx) => {
       const { cliente } = input;
 
-      //Verificar si el cliente existe
+      // Verificar si existe o no
       let clienteExiste = await Cliente.findById(cliente);
 
       if (!clienteExiste) {
-        throw new Error("El cliente no existe");
+        throw new Error("Ese cliente no existe");
       }
 
       // Verificar si el cliente es del vendedor
@@ -247,11 +247,14 @@ const resolvers = {
             `El articulo: ${producto.nombre} excede la cantidad disponible`
           );
         } else {
+          // Restar la cantidad a lo disponible
           producto.existencia = producto.existencia - articulo.cantidad;
+
           await producto.save();
         }
       }
-      // crear un nuevo pedido
+
+      // Crear un nuevo pedido
       const nuevoPedido = new Pedido(input);
 
       // asignarle un vendedor

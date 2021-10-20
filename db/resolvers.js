@@ -18,7 +18,7 @@ const resolvers = {
     obtenerUsuario: async (_, {}, ctx) => {
       //context ya tiene la info del usuario, por eso se modifica ya que
       // el token ya esta autenticado.
-      return ctx;
+      return ctx.usuario;
     },
     obtenerProductos: async () => {
       try {

@@ -1,7 +1,9 @@
 const { gql } = require("apollo-server");
 
-// Schema
+// Schemadefs
 const typeDefs = gql`
+  # Types
+
   type Usuario {
     id: ID
     nombre: String
@@ -36,7 +38,7 @@ const typeDefs = gql`
     id: ID
     pedido: [PedidoGrupo]
     total: Float
-    cliente: Cliente
+    cliente: ID
     vendedor: ID
     fecha: String
     estado: EstadoPedido
@@ -58,6 +60,8 @@ const typeDefs = gql`
     total: Float
     vendedor: [Usuario]
   }
+
+  #inputs
 
   input UsuarioInput {
     nombre: String!
@@ -88,8 +92,6 @@ const typeDefs = gql`
   input PedidoProductoInput {
     id: ID
     cantidad: Int
-    nombre: String
-    precio: Float
   }
 
   input PedidoInput {
@@ -109,7 +111,7 @@ const typeDefs = gql`
     #Usuarios
     obtenerUsuario: Usuario
 
-    # Productos
+    #Productos
     obtenerProductos: [Producto]
     obtenerProducto(id: ID!): Producto
 

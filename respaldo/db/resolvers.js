@@ -68,6 +68,7 @@ const resolvers = {
       if (cliente.vendedor.toString() !== ctx.usuario.id) {
         throw new Error("No tienes las credenciales");
       }
+
       return cliente;
     },
     obtenerPedidos: async () => {

@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 
-const ClienteSchema = new mongoose.Schema({
+const ClientesSchema = mongoose.Schema({
   nombre: {
     type: String,
     required: true,
+    trim: true,
   },
   apellido: {
     type: String,
     required: true,
+    trim: true,
   },
   empresa: {
     type: String,
@@ -35,4 +37,4 @@ const ClienteSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Cliente", ClienteSchema);
+module.exports = mongoose.model("Cliente", ClientesSchema);

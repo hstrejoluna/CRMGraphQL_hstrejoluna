@@ -22,7 +22,7 @@ const server = new ApolloServer({
         
         return { usuario };
       } catch (error) {
-        console.log(error);
+        console.log("error en header jwt "+error);
       }
     }
   },

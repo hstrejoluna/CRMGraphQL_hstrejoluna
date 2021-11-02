@@ -59,7 +59,7 @@ const resolvers = {
     obtenerCliente: async (_, { id }, ctx) => {
       // Revisar si el cliente existe o no
       const cliente = await Cliente.findById(id);
-
+  
       if (!cliente) {
         throw new Error("Cliente no encontrado");
       }
@@ -68,6 +68,7 @@ const resolvers = {
       if (cliente.vendedor.toString() !== ctx.usuario.id) {
         throw new Error("No tienes las credenciales");
       }
+
       return cliente;
     },
     obtenerPedidos: async () => {
